@@ -1,0 +1,22 @@
+name: nyc_taxi
+version: "1.0.0"
+config-version: 2
+profile: nyc_taxi
+
+clean-targets: ["target", "dbt_packages"]
+
+models:
+  nyc_taxi:
+    staging:
+      +materialized: view
+      +schema: staging
+    marts:
+      +materialized: table
+      +schema: marts
+
+seeds:
+  nyc_taxi:
+    +schema: staging
+    taxi_zone_lookup:
+      +column_types:
+        LocationID: int64
