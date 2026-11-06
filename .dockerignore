@@ -1,0 +1,7 @@
+.git
+.venv
+.env
+logs
+**/target
+**/dbt_packages
+*.json
