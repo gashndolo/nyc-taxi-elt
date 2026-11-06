@@ -1,7 +1,7 @@
 # NYC Taxi ELT Pipeline
-<!-- 
+ 
 [![CI](https://github.com/gashndolo/nyc-taxi-elt/actions/workflows/ci.yml/badge.svg)](https://github.com/gashndolo/nyc-taxi-elt/actions/workflows/ci.yml)
- -->
+
 A batch ELT pipeline on Google Cloud that ingests NYC TLC taxi trip data and
 Open-Meteo weather data, loads it into BigQuery, and transforms it into a
 star schema with dbt. Airflow orchestrates the monthly run, and a Looker Studio
@@ -266,7 +266,7 @@ A full `dbt build` over six months of data processes about **11.3 GB** across 29
 - [x] **Phase 3:** dbt staging, star schema, incremental fact table, tests, docs
 - [x] **Phase 4:** Airflow DAG with sensor, retries, alerts, and backfill
 - [x] **Phase 5:** Looker Studio dashboard, unit tests, GitHub Actions CI
-- [ ] Ideas: load more months, add green taxi data, run dbt builds in CI with Workload Identity Federation
+- [ ] TODO: load more months, add green taxi data, run dbt builds in CI with Workload Identity Federation, also python CI failing for some reason???
 
 ## License and acknowledgements
 
