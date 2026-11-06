@@ -9,15 +9,22 @@ logging.basicConfig(level=logging.INFO,
 
 
 def main():
-    p = argparse.ArgumentParser(description="Ingest and load one month of data")
+    p = argparse.ArgumentParser(description="Ingest and/or load one month of data")
     p.add_argument("--year", type=int, required=True)
     p.add_argument("--month", type=int, required=True)
     p.add_argument("--force", action="store_true", help="re-download to GCS")
-    p.add_argument("--skip-load", action="store_true", help="GCS only, no BigQuery")
+    mode = p.add_mutually_exclusive_group()
+    mode.add_argument("--skip-load", action="store_true", help="GCS only, no BigQuery")
+    mode.add_argument("--load-only", action="store_true",
+                      help="skip download, load existing GCS files into BigQuery")
     args = p.parse_args()
 
-    taxi_path = tlc.ingest(args.year, args.month, args.force)
-    weather_path = weather.ingest(args.year, args.month, args.force)
+    if args.load_only:
+        taxi_path = tlc.gcs_path(args.year, args.month)
+        weather_path = weather.gcs_path(args.year, args.month)
+    else:
+        taxi_path = tlc.ingest(args.year, args.month, args.force)
+        weather_path = weather.ingest(args.year, args.month, args.force)
 
     if not args.skip_load:
         bq.load_month(TAXI, args.year, args.month, taxi_path)
