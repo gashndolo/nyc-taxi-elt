@@ -1,0 +1,27 @@
+version: 2
+
+models:
+  - name: stg_taxi_trips
+    description: "Cleaned, deduplicated yellow taxi trips. Invalid records are filtered out."
+    columns:
+      - name: trip_id
+        description: "Surrogate key built from the trip's identifying fields."
+        data_tests: [unique, not_null]
+      - name: pickup_at
+        data_tests: [not_null]
+      - name: payment_type_id
+        data_tests:
+          - accepted_values:
+              values: [0, 1, 2, 3, 4, 5, 6]
+              quote: false
+
+  - name: stg_weather_hourly
+    description: "Hourly NYC weather from Open-Meteo, in local time."
+    columns:
+      - name: weather_hour
+        data_tests: [unique, not_null]
+
+  - name: stg_taxi_zones
+    columns:
+      - name: location_id
+        data_tests: [unique, not_null]
