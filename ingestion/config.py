@@ -17,3 +17,6 @@ WEATHER_VARS = [
     "temperature_2m", "precipitation", "rain", "snowfall",
     "wind_speed_10m", "weather_code",
 ]
+
+REGION = os.environ.get("GCP_REGION", "us-central1")
+RAW_DATASET = os.environ.get("BQ_RAW_DATASET", "raw")
