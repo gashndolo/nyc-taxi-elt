@@ -1,0 +1,9 @@
+nyc_taxi:
+  target: ci
+  outputs:
+    ci:
+      type: bigquery
+      method: oauth
+      project: ci-placeholder
+      dataset: analytics
+      location: us-central1
