@@ -230,7 +230,7 @@ docker compose exec airflow-scheduler airflow backfill create \
   --dag-id nyc_taxi_elt --from-date 2024-01-01 --to-date 2024-06-30
 ```
 
-![Airflow DAG](docs/dag.png)
+<!--![Airflow DAG](docs/dag.png) -->
 
 The Airflow UI has its login disabled for local development only. Never expose that port to a network.
 
